@@ -9,7 +9,7 @@ module.exports = {
     match: ['*://*.mp4upload.com/*'],
   },
   mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*'],
+    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*', '*://*.mcloud.bz/*'],
   },
   prettyfast: {
     match: ['*://*.prettyfast.to/*'],
@@ -484,6 +484,7 @@ module.exports = {
       '*://vizcloud.site/e/*',
       '*://vizcloud.co/embed/*',
       '*://vizcloud.co/e/*',
+      '*://vidplay.site/e/*',
     ],
   },
   // gogo
@@ -651,6 +652,12 @@ module.exports = {
       '*://crownmakermacaronicism.com/e/*',
       '*://generatesnitrosate.com/e/*',
       '*://yodelswartlike.com/e/*',
+      '*://figeterpiazine.com/e/*',
+      '*://cigarlessarefy.com/e/*',
+      '*://valeronevijao.com/e/*',
+      '*://strawberriesporail.com/e/*',
+      '*://timberwoodanotia.com/e/*',
+      '*://phenomenalityuniform.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },

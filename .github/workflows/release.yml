@@ -19,6 +19,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -46,6 +48,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -83,6 +87,8 @@ jobs:
         npm run build
       env:
         CI_MODE: travis
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package
@@ -109,6 +115,8 @@ jobs:
       env:
         CI_MODE: travis
         APP_TARGET: firefox
+        SIMKL_API_ID: ${{ secrets.SIMKL_API_ID }}
+        SIMKL_API_SECRET: ${{ secrets.SIMKL_API_SECRET }}
     - name: Pack
       run: |
         npm run package

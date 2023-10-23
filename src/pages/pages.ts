@@ -133,7 +133,9 @@ import { AnimeKO } from './AnimeKO/main';
 import { Animeflix } from './Animeflix/main';
 import { LuciferDonghua } from './LuciferDonghua/main';
 import { NeoxScans } from './NeoxScans/main';
+import { Anix } from './Anix/main';
 import { HinataSoul } from './HinataSoul/main';
+import { OgladajAnime } from './OgladajAnime/main';
 
 export const pages = {
   nineAnime,
@@ -271,5 +273,7 @@ export const pages = {
   Animeflix,
   LuciferDonghua,
   NeoxScans,
+  Anix,
   HinataSoul,
+  OgladajAnime,
 };
