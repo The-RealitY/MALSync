@@ -1,8 +1,8 @@
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
 const { PuppeteerBlocker } = require('@cliqz/adblocker-puppeteer');
-const fetch = require('cross-fetch');
 const path = require('path');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const fs = require('fs');
 const dir = require('node-dir');
@@ -325,7 +325,9 @@ async function singleCase(block, test, page, testPage, retry = 0) {
   if (typeof text.uiSelector !== 'undefined') {
     expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(test.expected.uiSelector);
   }
-  if (typeof text.epList !== 'undefined' && typeof test.expected.epList !== 'undefined') {
+  if (typeof test.expected.epList !== 'undefined') {
+    expect(text.epList, 'Episode List Empty').to.not.be.undefined;
+    expect(Object.keys(text.epList).length, 'Episode List Empty').to.not.equal(0);
     for (const key in test.expected.epList) {
       if (!text.epList[key]) throw `Episode url ${key} is ${text.epList[key]}`;
       expect(test.expected.epList[key].replace(/www[^.]*\./, ''), `EP${key}`).to.equal(

@@ -20,9 +20,6 @@ module.exports = {
   crunchyroll: {
     match: ['*://*.static.crunchyroll.com/*'],
   },
-  Vrv: {
-    match: ['*://*.static.vrv.co/*'],
-  },
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',
@@ -96,7 +93,7 @@ module.exports = {
     match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: ['*://*.kwik.cx/*'],
+    match: ['*://*.kwik.cx/*', '*://*.kwik.si/*'],
   },
   mega: {
     match: ['*://*.mega.nz/*'],
@@ -151,9 +148,6 @@ module.exports = {
   },
   animedaisuki: {
     match: ['*://animedaisuki.moe/embed/*'],
-  },
-  Wakanim: {
-    match: ['*://*.wakanim.tv/*/*/*/embeddedplayer/*'],
   },
   superitu: {
     match: ['*://superitu.com/embed/*'],
@@ -264,6 +258,11 @@ module.exports = {
       '*://*.mixdrop.co/e/*',
       '*://*.mixdrop.to/e/*',
       '*://*.mdbekjwqa.pw/e/*',
+      '*://*.mdfx9dc8n.net/e/*',
+      '*://*.mdzsmutpcvykb.net/e/*',
+      '*://*.mixdropjmk.pw/e/*',
+      '*://*.mixdrop21.net/e/*',
+      '*://*.mixdrop.si/e/*',
       // auto-mixdrop-replace-dont-remove
     ],
   },
@@ -500,6 +499,7 @@ module.exports = {
       '*://vidplay.site/e/*',
       '*://vidplay.lol/e/*',
       '*://vidplay.online/e/*',
+      '*://a9bfed0818.nl/e/*',
     ],
   },
   // gogo
@@ -669,6 +669,16 @@ module.exports = {
       '*://stevenimaginelittle.com/e/*',
       '*://edwardarriveoften.com/e/*',
       '*://lukecomparetwo.com/e/*',
+      '*://kennethofficialitem.com/e/*',
+      '*://bradleyviewdoctor.com/e/*',
+      '*://jamiesamewalk.com/e/*',
+      '*://seanshowcould.com/e/*',
+      '*://johntryopen.com/e/*',
+      '*://morganoperationface.com/e/*',
+      '*://markstyleall.com/e/*',
+      '*://jayservicestuff.com/e/*',
+      '*://vincentincludesuccessful.com/e/*',
+      '*://brookethoughi.com/e/*',
       // auto-voe-replace-dont-remove
     ],
   },
@@ -853,7 +863,14 @@ module.exports = {
   },
   // 9anime
   filemoon: {
-    match: ['*://filemoon.sx/e/*'],
+    match: [
+      '*://filemoon.sx/e/*',
+      '*://kerapoxy.cc/e/*',
+      '*://vpcxz19p.xyz/e/*',
+      '*://filemoon.top/e/*',
+      '*://fmoonembed.pro/e/*',
+      '*://rgeyyddl.skin/e/*',
+    ],
   },
   // toonanime
   toonvip: {
@@ -899,8 +916,20 @@ module.exports = {
   soraplay: {
     match: ['*://*.soraplay.xyz/*'],
   },
-  // animeflv
+  // animeflv/gogo
   streamwish: {
-    match: ['*://streamwish.to/e/*', '*://sfastwish.com/e/*'],
+    match: [
+      '*://streamwish.to/e/*',
+      '*://sfastwish.com/e/*',
+      '*://awish.pro/e/*',
+      // auto-gogostreamwish-replace-dont-remove
+    ],
+  },
+  // gogo
+  filelions: {
+    match: [
+      '*://alions.pro/v/*',
+      // auto-gogofilelions-replace-dont-remove
+    ],
   },
 };
