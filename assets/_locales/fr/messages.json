@@ -184,7 +184,7 @@
         "description": "Bad - Score"
     },
     "UI_Score_VeryBad": {
-        "message": "(3) Très Mauvais",
+        "message": "(3) Très mauvais",
         "description": "Very Bad - Score"
     },
     "UI_Score_Horrible": {
@@ -1492,7 +1492,7 @@
         "description": "paragraph two of the description"
     },
     "installPage_Login_Successful": {
-        "message": "Fantastique, $Username$ ! Vous êtes a présent connecté.",
+        "message": "Fantastique, $Username$ ! Vous êtes à présent connecté.",
         "description": "Text after the user successfully authenticated",
         "placeholders": {
             "Username": {
@@ -1538,5 +1538,21 @@
     "settings_LocalSync_Help_Before": {
         "message": "En cas de problèmes, veuillez réessayer dans",
         "description": "Text in case of problems with the localSync import. After this there is a link with the text of settings_LocalSync_Help_LinkText"
+    },
+    "settings_permissions_pages": {
+        "message": "Pages",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Lecteurs vidéo",
+        "description": "Header text for the list of video player permissions"
+    },
+    "settings_permissions_required": {
+        "message": "Obligatoires",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_overview": {
+        "message": "Permissions",
+        "description": "Button that leads to where permissions to sites can be managed"
     }
 }

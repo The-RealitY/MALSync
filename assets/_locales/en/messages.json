@@ -1204,9 +1204,9 @@
         "description": "Notifications"
     },
     "settings_Notifications_Sticky": {
-      "message": "Sticky Notifications",
-      "description": "Requires interaction to dismiss; ignores system notification timeout"
-  },
+        "message": "Sticky Notifications",
+        "description": "Requires interaction to dismiss; ignores system notification timeout"
+    },
     "settings_Debugging": {
         "message": "Debugging",
         "description": "Debugging"
@@ -1256,7 +1256,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync Icon",
+        "message": "MAL-Sync Icon",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -1282,6 +1282,22 @@
     "settings_website_button": {
         "message": "Websites",
         "description": "Button that leads to the config page where individual pages can be disabled"
+    },
+    "settings_permissions_overview": {
+        "message": "Permissions",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "settings_permissions_required": {
+        "message": "Required",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Pages",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Video player",
+        "description": "Header text for the list of video player permissions"
     },
     "settings_custom_domains_button": {
         "message": "Custom domains",

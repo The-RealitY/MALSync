@@ -1,16 +1,23 @@
+import { isValidPattern } from 'webext-patterns';
 import { domainType } from '../background/customDomain';
 import { hasDomainPermission } from './manifest';
 import { greaterOrEqualCurrentVersion } from './version';
 import { getPages } from './quicklinksBuilder';
 
 export function getPageOptions() {
-  const options = [{ key: 'iframe', title: 'Video Iframe' }];
-  getPages().forEach(page => {
-    options.push({
-      key: page.key,
-      title: page.name,
+  const options = [
+    { key: 'iframe', title: 'Video Iframe' },
+    { key: 'hostpermission', title: 'Host Permission' },
+    { key: 'spacer1', title: '-_-_-' },
+  ];
+  getPages()
+    .sort((a, b) => utils.sortAlphabetically(a.name, b.name))
+    .forEach(page => {
+      options.push({
+        key: page.key,
+        title: page.name,
+      });
     });
-  });
   return options;
 }
 
@@ -94,16 +101,7 @@ export async function hasMissingPermissions(): Promise<boolean> {
 }
 
 function getOrigins(permissions: domainType[]) {
-  return permissions
-    .filter(perm => {
-      try {
-        const url = new URL(perm.domain);
-        return Boolean(url.origin);
-      } catch (_) {
-        return false;
-      }
-    })
-    .map(perm => `${new URL(perm.domain).origin}/`);
+  return permissions.filter(perm => isValidPattern(perm.domain)).map(perm => perm.domain);
 }
 
 export async function requestPermissions(permissions: domainType[]) {
@@ -112,7 +110,7 @@ export async function requestPermissions(permissions: domainType[]) {
     con.m('Request Permissions').log(getOrigins(permissions));
     chrome.permissions.request(
       {
-        permissions: ['webNavigation'],
+        permissions: ['scripting'],
         origins: getOrigins(permissions),
       },
       granted => {
@@ -132,7 +130,7 @@ export async function checkPermissions(permissions: domainType[]): Promise<boole
   return new Promise(resolve => {
     chrome.permissions.contains(
       {
-        permissions: ['webNavigation'],
+        permissions: ['scripting'],
         origins: getOrigins(permissions),
       },
       result => {
