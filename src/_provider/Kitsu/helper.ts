@@ -1,19 +1,36 @@
+import { startFinishDate, status } from '../definitions';
 import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('kitsu', '#d65e43');
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
-    current: 1,
-    planned: 6,
-    completed: 2,
-    dropped: 4,
-    on_hold: 3,
+    current: status.Watching,
+    planned: status.PlanToWatch,
+    completed: status.Completed,
+    dropped: status.Dropped,
+    on_hold: status.Onhold,
   };
   if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
   }
   return list[aniStatus];
+}
+
+export function timestampToDate(timestamp: string | null): startFinishDate {
+  if (typeof timestamp !== 'string') {
+    return null;
+  }
+
+  return timestamp.substring(0, 10);
+}
+
+export function dateToTimestamp(date: startFinishDate): string | null {
+  if (typeof date !== 'string') {
+    return null;
+  }
+
+  return `${date}T00:00:00.000Z`;
 }
 
 export function getTitle(titles, canonicalTitle) {
@@ -54,7 +71,7 @@ export function getCacheKey(id, kitsuId) {
 export function malToKitsu(malid: number, type: 'anime' | 'manga') {
   return apiCall(
     'GET',
-    `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
+    `https://kitsu.app/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
     {},
     false,
   );
@@ -63,7 +80,7 @@ export function malToKitsu(malid: number, type: 'anime' | 'manga') {
 export function kitsuToMal(kitsuId: number, type: 'anime' | 'manga') {
   return api.request
     .xhr('GET', {
-      url: `https://kitsu.io/api/edge/${type}/${kitsuId}/mappings?filter[externalSite]=myanimelist/${type}`,
+      url: `https://kitsu.app/api/edge/${type}/${kitsuId}/mappings?filter[externalSite]=myanimelist/${type}`,
       headers: {
         'Content-Type': 'application/vnd.api+json',
         Accept: 'application/vnd.api+json',

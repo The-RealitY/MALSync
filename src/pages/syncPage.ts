@@ -809,7 +809,7 @@ export class SyncPage {
       j.$('#malRating').after(
         j.html(
           `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
-            `syncPage_malObj_addAnime`,
+            'syncPage_malObj_addAnime',
             [this.singleObj.shortName],
           )}</a></span>`,
         ),
@@ -1256,6 +1256,7 @@ export class SyncPage {
               largeImageKey: largeImageKeyTemp,
               largeImageText: largeImageTextTemp,
               instance: true,
+              type: 3,
             },
           };
 
@@ -1301,6 +1302,7 @@ export class SyncPage {
                 const timeleft =
                   this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
+                pres.presence.startTimestamp = this.browsingtime;
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'Playing';
               }

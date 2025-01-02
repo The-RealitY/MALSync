@@ -118,7 +118,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://zeroscans.com"><img src="https://favicon.malsync.moe/?domain=https://zeroscans.com"> ZeroScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://smotret-anime.com"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.com"> Anime365</a></td>
+                <td><a href="https://smotret-anime.net"><img src="https://favicon.malsync.moe/?domain=https://smotret-anime.net"> Anime365</a></td>
                 <td><a href="https://reader.deathtollscans.net"><img src="https://favicon.malsync.moe/?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
                 <td></td>
               </tr><tr>
@@ -211,7 +211,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeonsen.xyz"><img src="https://favicon.malsync.moe/?domain=https://animeonsen.xyz"> AnimeOnsen</a></td>
-                <td><a href="https://luminousscans.com"><img src="https://favicon.malsync.moe/?domain=https://luminousscans.com"> LuminousScans</a></td>
+                <td><a href="https://luminous-scans.com"><img src="https://favicon.malsync.moe/?domain=https://luminous-scans.com"> LuminousScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
@@ -219,7 +219,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animeworld.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeworld.tv"> Animeworld</a></td>
-                <td><a href="https://void-scans.com"><img src="https://favicon.malsync.moe/?domain=https://void-scans.com"> VoidScans</a></td>
+                <td><a href="https://hivetoon.com/"><img src="https://favicon.malsync.moe/?domain=https://hivetoon.com/"> VoidScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://vvww.toonanime.cc"><img src="https://favicon.malsync.moe/?domain=https://vvww.toonanime.cc"> ToonAnime</a></td>
@@ -242,7 +242,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://hachi.moe"><img src="https://favicon.malsync.moe/?domain=https://hachi.moe"> hachi</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animationdigitalnetwork.fr"><img src="https://favicon.malsync.moe/?domain=https://animationdigitalnetwork.fr"> ADN</a></td>
+                <td><a href="https://animationdigitalnetwork.com"><img src="https://favicon.malsync.moe/?domain=https://animationdigitalnetwork.com"> ADN</a></td>
                 <td><a href="https://manhuaus.com"><img src="https://favicon.malsync.moe/?domain=https://manhuaus.com"> ManhuaUS</a></td>
                 <td></td>
               </tr><tr>
@@ -251,11 +251,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://docchi.pl"><img src="https://favicon.malsync.moe/?domain=https://docchi.pl"> Docchi</a></td>
-                <td></td>
+                <td><a href="https://www.mangaread.org"><img src="https://favicon.malsync.moe/?domain=https://www.mangaread.org"> MangaRead</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://franime.fr"><img src="https://favicon.malsync.moe/?domain=https://franime.fr"> FRAnime</a></td>
-                <td></td>
+                <td><a href="https://templescan.net"><img src="https://favicon.malsync.moe/?domain=https://templescan.net"> TempleScan</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animelon.com"><img src="https://favicon.malsync.moe/?domain=https://www.animelon.com"> Animelon</a></td>
@@ -315,6 +315,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://latanime.org"><img src="https://favicon.malsync.moe/?domain=https://latanime.org"> Latanime</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://bakashi.tv"><img src="https://favicon.malsync.moe/?domain=https://bakashi.tv"> Bakashi</a></td>
                 <td></td>
                 <td></td>
               </tr>

@@ -1,13 +1,14 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
+import { IntlDateTime, IntlDuration } from '../../utils/IntlWrapper';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
     super(url);
     this.logger = this.logger.m('Kitsu');
 
-    if (url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
+    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.kitsuSlug = utils.urlPart(url, 4);
       this.malId = NaN;
@@ -79,13 +80,13 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
     return this.apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&nsfw=true`,
+      `https://kitsu.app/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&nsfw=true`,
       {},
       true,
     ).then(res => {
       try {
         res.data = res.data[0];
-        // eslint-disable-next-line no-unused-expressions
+        // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
         throw new NotFoundError(e.message);
@@ -210,7 +211,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.episodeLength, 'minutes', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
 
     if (
@@ -225,22 +230,24 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (
-      typeof this.animeI().attributes.startDate !== 'undefined' &&
-      this.animeI().attributes.startDate !== null
-    )
+    if (this.animeI().attributes.startDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Start_Date'),
-        body: [{ text: this.animeI().attributes.startDate }],
+        body: [
+          {
+            text: new IntlDateTime(this.animeI().attributes.startDate).getDateTimeText(),
+          },
+        ],
       });
 
-    if (
-      typeof this.animeI().attributes.endDate !== 'undefined' &&
-      this.animeI().attributes.endDate !== null
-    )
+    if (this.animeI().attributes.endDate)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_End_Date'),
-        body: [{ text: this.animeI().attributes.endDate }],
+        body: [
+          {
+            text: new IntlDateTime(this.animeI().attributes.endDate).getDateTimeText(),
+          },
+        ],
       });
 
     const genres: any[] = [];
@@ -249,7 +256,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (i.type === 'categories' && genres.length < 6) {
           genres.push({
             text: i.attributes.title,
-            url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
+            url: `https://kitsu.app/${this.type}?categories=${i.attributes.slug}`,
           });
         }
       });
@@ -269,13 +276,14 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: this.animeI().attributes.ageRating }],
       });
 
-    if (
-      typeof this.animeI().attributes.totalLength !== 'undefined' &&
-      this.animeI().attributes.totalLength !== null
-    )
+    if (this.animeI().attributes.totalLength)
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Total_Playtime'),
-        body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(this.animeI().attributes.totalLength, 'minutes', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
   }
 
@@ -286,7 +294,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.animeInfo.included.forEach(function (i) {
         if (i.type === 'manga' || i.type === 'anime') {
           an[i.id] = {
-            url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
+            url: `https://kitsu.app/${i.type}/${i.attributes.slug}`,
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,

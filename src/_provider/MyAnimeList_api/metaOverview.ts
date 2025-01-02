@@ -2,7 +2,8 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
-import { msDiffToShortTimeString } from '../../utils/time';
+import { dateFromTimezoneToTimezone, getWeektime } from '../../utils/time';
+import { IntlDuration, IntlRange } from '../../utils/IntlWrapper';
 
 enum mediaTypeDefinition {
   unknown = 'Unknown',
@@ -126,7 +127,12 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    this.meta.title = data.title;
+    const useAltTitle = api.settings.get('forceEnglishTitles');
+    if (useAltTitle) {
+      this.meta.title = data.alternative_titles.en || data.title;
+    } else {
+      this.meta.title = data.title;
+    }
   }
 
   private description(data) {
@@ -240,17 +246,13 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     if (data.start_date) {
-      let format = '';
-      if (data.start_date) format += `${data.start_date} `;
-      format += 'to ';
-      if (data.end_date) {
-        format += data.end_date;
-      } else {
-        format += '?';
-      }
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Aired'),
-        body: [{ text: format }],
+        body: [
+          {
+            text: new IntlRange(data.start_date, data.end_date).getDateTimeRangeText(),
+          },
+        ],
       });
     }
 
@@ -274,9 +276,25 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (data.broadcast.day_of_the_week) format += `${data.broadcast.day_of_the_week} `;
       if (data.broadcast.day_of_the_week && data.broadcast.start_time) format += 'at ';
       if (data.broadcast.start_time) format += `${data.broadcast.start_time} (JST)`;
+      let body: any = [{ text: format }];
+
+      if (data.broadcast.day_of_the_week && data.broadcast.start_time) {
+        const weekDate = getWeektime(data.broadcast.day_of_the_week, data.broadcast.start_time);
+
+        if (weekDate) {
+          const broadcastDate = dateFromTimezoneToTimezone(weekDate, 'Asia/Tokyo');
+          body = [
+            {
+              date: broadcastDate,
+              type: 'weektime',
+            },
+          ];
+        }
+      }
+
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Broadcast'),
-        body: [{ text: format }],
+        body,
       });
     }
 
@@ -339,7 +357,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.average_episode_duration) {
       this.meta.info.push({
         title: api.storage.lang('overview_sidebar_Duration'),
-        body: [{ text: msDiffToShortTimeString(data.average_episode_duration * 1000) }],
+        body: [
+          {
+            text: `${new IntlDuration().setRelativeTime(data.average_episode_duration, 'seconds', 'Duration').getRelativeText()}`,
+          },
+        ],
       });
     }
 

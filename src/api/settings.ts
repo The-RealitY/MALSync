@@ -8,6 +8,7 @@ export const settingsObj = {
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,
+    forceEnglishTitles: false,
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
@@ -46,7 +47,6 @@ export const settingsObj = {
     loadPTWForProgress: false,
 
     quicklinks: [
-      'Aniwave',
       'Crunchyroll',
       'Gogoanime',
       'Mangadex',
@@ -54,7 +54,6 @@ export const settingsObj = {
       'MangaFox',
       'MangaSee',
       'MangaFire',
-      'YugenAnime',
       'HiAnime',
       'Hulu',
       'Netflix',

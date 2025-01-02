@@ -195,7 +195,7 @@
     "name": "MonosChinos"
   },
   {
-    "domain": "https://smotret-anime.com",
+    "domain": "https://smotret-anime.net",
     "type": "anime",
     "name": "Anime365"
   },
@@ -495,7 +495,7 @@
     "name": "Animetoast"
   },
   {
-    "domain": "https://luminousscans.com",
+    "domain": "https://luminous-scans.com",
     "type": "manga",
     "name": "LuminousScans"
   },
@@ -510,7 +510,7 @@
     "name": "MangaBuddy"
   },
   {
-    "domain": "https://void-scans.com",
+    "domain": "https://hivetoon.com/",
     "type": "manga",
     "name": "VoidScans"
   },
@@ -540,7 +540,7 @@
     "name": "SovetRomantica"
   },
   {
-    "domain": "https://animationdigitalnetwork.fr",
+    "domain": "https://animationdigitalnetwork.com",
     "type": "anime",
     "name": "ADN"
   },
@@ -673,5 +673,20 @@
     "domain": "https://latanime.org",
     "type": "anime",
     "name": "Latanime"
+  },
+  {
+    "domain": "https://www.mangaread.org",
+    "type": "manga",
+    "name": "MangaRead"
+  },
+  {
+    "domain": "https://bakashi.tv",
+    "type": "anime",
+    "name": "Bakashi"
+  },
+  {
+    "domain": "https://templescan.net",
+    "type": "manga",
+    "name": "TempleScan"
   }
 ]

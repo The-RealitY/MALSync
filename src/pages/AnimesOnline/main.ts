@@ -6,7 +6,7 @@ const changeSrc = (currentPlayer, currentTries = 0) => {
 
   if (tempSrc === undefined) {
     if (currentTries >= 100) {
-      utils.flashm(`MAL-SYNC: Cant find target src video, please refresh the page and try again!`, {
+      utils.flashm('MAL-SYNC: Cant find target src video, please refresh the page and try again!', {
         error: true,
         type: 'error',
       });
@@ -23,7 +23,7 @@ const changeSrc = (currentPlayer, currentTries = 0) => {
   $('.player.current').removeClass('current');
   $('#tab-1').addClass('current');
 
-  $($('video')[0]).attr('src', currentPlayer === 1 ? originalSrc : tempSrc ?? originalSrc);
+  $($('video')[0]).attr('src', currentPlayer === 1 ? originalSrc : (tempSrc ?? originalSrc));
 };
 
 export const AnimesOnline: pageInterface = {

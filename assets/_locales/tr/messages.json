@@ -1,6 +1,6 @@
 {
     "Search": {
-        "message": "Ara",
+        "message": "Sitede Ara",
         "description": "Search"
     },
     "Show": {
@@ -64,7 +64,7 @@
         "description": "All"
     },
     "Package_Description": {
-        "message": "MAL/AniList/Kitsu/Simkl/Shikimori'yi otomatik bölüm takibi ile çeşitli sitelere entegre eder.",
+        "message": "MyAnimeList/AniList/Kitsu/Simkl/Shikimori'yi çeşitli sitelere entegre eder ve otomatik bölüm takibi yapar.",
         "description": "Description MALSync"
     },
     "UI_Status": {
@@ -1200,7 +1200,7 @@
         "description": "Dropdown option to show the server icon on discord"
     },
     "settings_presence_largeimage_malsync": {
-        "message": "Malsync İkonu",
+        "message": "MAL-Sync İkonu",
         "description": "Dropdown option to show the malsync icon on discord"
     },
     "settings_enabled": {
@@ -1538,5 +1538,25 @@
     "settings_LocalSync_Help_LinkText": {
         "message": "bu pencere",
         "description": "Link text surronded by the strings settings_LocalSync_Help_Before and settings_LocalSync_Help_After"
+    },
+    "settings_permissions_overview": {
+        "message": "İzinler",
+        "description": "Button that leads to where permissions to sites can be managed"
+    },
+    "settings_permissions_required": {
+        "message": "Gerekli",
+        "description": "Header text for the list of required permissions"
+    },
+    "settings_permissions_pages": {
+        "message": "Sayfalar",
+        "description": "Header text for the list of page permissions"
+    },
+    "settings_permissions_player": {
+        "message": "Video Oynatıcı",
+        "description": "Header text for the list of video player permissions"
+    },
+    "locale": {
+        "message": "tr",
+        "description": "Current locale"
     }
 }

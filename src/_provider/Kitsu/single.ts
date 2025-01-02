@@ -1,5 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
+import * as definitions from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 import { point10 } from '../ScoreMode/point10';
 import { point20decimal } from '../ScoreMode/point20decimal';
@@ -25,10 +26,10 @@ export class Single extends SingleAbstract {
 
   shortName = 'Kitsu';
 
-  authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
+  authenticationUrl = 'https://kitsu.app/404?mal-sync=authentication';
 
   protected handleUrl(url) {
-    if (url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
+    if (url.match(/kitsu\.app\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.ids.kitsu.slug = utils.urlPart(url, 4);
       return;
@@ -51,18 +52,42 @@ export class Single extends SingleAbstract {
 
   _getStatus() {
     if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current')
-      return 23;
+      return definitions.status.Rewatching;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
   _setStatus(status) {
-    if (status === 23) {
-      status = 1;
+    if (status === definitions.status.Rewatching) {
+      status = definitions.status.Watching;
       this.listI().attributes.reconsuming = true;
     } else {
       this.listI().attributes.reconsuming = false;
     }
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
+  }
+
+  _getStartDate() {
+    return helper.timestampToDate(this.listI().attributes.startedAt);
+  }
+
+  _setStartDate(startDate) {
+    this.listI().attributes.startedAt = helper.dateToTimestamp(startDate);
+  }
+
+  _getFinishDate() {
+    return helper.timestampToDate(this.listI().attributes.finishedAt);
+  }
+
+  _setFinishDate(finishDate) {
+    this.listI().attributes.finishedAt = helper.dateToTimestamp(finishDate);
+  }
+
+  _getRewatchCount() {
+    return this.listI().attributes.reconsumeCount;
+  }
+
+  _setRewatchCount(rewatchCount) {
+    this.listI().attributes.reconsumeCount = rewatchCount;
   }
 
   _getScore() {
@@ -148,7 +173,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://kitsu.io/${this.getType()}/${this.animeI().attributes.slug}`;
+    return `https://kitsu.app/${this.getType()}/${this.animeI().attributes.slug}`;
   }
 
   _getImage() {
@@ -194,7 +219,7 @@ export class Single extends SingleAbstract {
       .then(userId => {
         return this.apiCall(
           'GET',
-          `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userId}&filter[kind]=${this.getType()}&filter[${this.getType()}_id]=${
+          `https://kitsu.app/api/edge/library-entries?filter[user_id]=${userId}&filter[kind]=${this.getType()}&filter[${this.getType()}_id]=${
             this.ids.kitsu.id
           }&page[limit]=1&page[limit]=1&include=${this.getType()}&fields[${this.getType()}]=slug,titles,canonicalTitle,averageRating,posterImage,${
             this.getType() === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
@@ -221,9 +246,11 @@ export class Single extends SingleAbstract {
               progress: 0,
               volumesOwned: 0,
               reconsuming: false,
-              reconsumeCount: false,
+              reconsumeCount: 0,
               ratingTwenty: null,
               status: 'planned',
+              startedAt: null,
+              finishedAt: null,
             },
           };
           if (typeof kitsuRes !== 'undefined') {
@@ -268,6 +295,8 @@ export class Single extends SingleAbstract {
           reconsumeCount: this.listI().attributes.reconsumeCount,
           ratingTwenty: this._getTwentyScore(),
           status: this.listI().attributes.status,
+          startedAt: this.listI().attributes.startedAt,
+          finishedAt: this.listI().attributes.finishedAt,
         },
         type: 'library-entries',
       },
@@ -277,11 +306,11 @@ export class Single extends SingleAbstract {
     let updateUrl;
     let post;
     if (this.isOnList()) {
-      updateUrl = `https://kitsu.io/api/edge/library-entries/${this.listI().id}`;
+      updateUrl = `https://kitsu.app/api/edge/library-entries/${this.listI().id}`;
       variables.data.id = this.listI().id;
       post = 'PATCH';
     } else {
-      updateUrl = 'https://kitsu.io/api/edge/library-entries/';
+      updateUrl = 'https://kitsu.app/api/edge/library-entries/';
       variables.data.relationships = {
         [tType]: {
           data: {
@@ -324,7 +353,7 @@ export class Single extends SingleAbstract {
   protected kitsuSlugtoKitsu(kitsuSlug: string, type: any) {
     return this.apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
+      `https://kitsu.app/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
       {},
     )
       .catch(e => {
@@ -332,7 +361,7 @@ export class Single extends SingleAbstract {
           this._authenticated = false;
           return this.apiCall(
             'GET',
-            `https://kitsu.io/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
+            `https://kitsu.app/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
             {},
             false,
           );
@@ -362,7 +391,7 @@ export class Single extends SingleAbstract {
   protected malToKitsu(malid: number, type: any) {
     return this.apiCall(
       'GET',
-      `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
+      `https://kitsu.app/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
       {},
     )
       .catch(e => {
@@ -370,7 +399,7 @@ export class Single extends SingleAbstract {
           this._authenticated = false;
           return this.apiCall(
             'GET',
-            `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
+            `https://kitsu.app/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
             {},
             false,
           );
@@ -387,7 +416,7 @@ export class Single extends SingleAbstract {
     if (typeof userId !== 'undefined' && userId) {
       return userId;
     }
-    return this.apiCall('GET', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
+    return this.apiCall('GET', 'https://kitsu.app/api/edge/users?filter[self]=true').then(res => {
       if (
         typeof res.data === 'undefined' ||
         !res.data.length ||
@@ -414,6 +443,6 @@ export class Single extends SingleAbstract {
   }
 
   _delete() {
-    return this.apiCall('DELETE', `https://kitsu.io/api/edge/library-entries/${this.listI().id}`);
+    return this.apiCall('DELETE', `https://kitsu.app/api/edge/library-entries/${this.listI().id}`);
   }
 }
